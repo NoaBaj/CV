@@ -63,7 +63,7 @@
           50% { transform: translate(30px, -30px); }
       }
 
-      /* --- NAVIGATION (MODIFIÉE POUR CENTRER) --- */
+      /* --- NAVIGATION --- */
       nav {
           position: fixed;
           top: 20px;
@@ -78,22 +78,23 @@
           border-radius: 50px;
           padding: 0.8rem 2rem;
 
-          /* CENTRAGE DES ÉLÉMENTS */
+          /* Centrage Desktop */
           display: flex;
-          justify-content: center; /* Centre tout le contenu */
+          justify-content: center;
           align-items: center;
-          gap: 3rem; /* Espace entre le Logo et les Liens */
+          gap: 3rem;
 
           z-index: 100;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
       }
 
-      .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); }
+      .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); z-index: 101;}
 
-      /* Gestion des liens pour qu'ils soient bien alignés */
       .nav-links {
           display: flex;
-          gap: 1.5rem; /* Espace entre chaque lien */
+          gap: 1.5rem;
+          align-items: center;
       }
 
       .nav-links a {
@@ -101,9 +102,73 @@
           text-decoration: none;
           font-size: 0.9rem;
           transition: color 0.3s;
-          /* margin-left supprimé pour un centrage parfait via flex gap */
       }
       .nav-links a:hover { color: var(--accent-color); }
+
+      /* Bouton Menu Burger (Caché sur PC) */
+      .menu-toggle {
+          display: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #fff;
+          z-index: 101;
+      }
+
+      /* --- MEDIA QUERIES (MOBILE) --- */
+      @media (max-width: 768px) {
+          nav {
+              justify-content: space-between;
+              padding: 0.8rem 1.5rem;
+              gap: 0;
+          }
+
+          .menu-toggle {
+              display: block;
+          }
+
+          .nav-links {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: 100%;
+              background: rgba(15, 23, 42, 0.95);
+              backdrop-filter: blur(15px);
+              flex-direction: column;
+              padding: 20px;
+              border-radius: 20px;
+              border: var(--glass-border);
+              margin-top: 10px;
+              text-align: center;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          }
+
+          .nav-links.active {
+              display: flex;
+              animation: slideDown 0.3s ease forwards;
+          }
+
+          .nav-links a {
+              padding: 10px 0;
+              font-size: 1.1rem;
+              width: 100%;
+              display: block;
+          }
+
+          .hero h1 { font-size: 2.5rem; }
+
+          /* --- FIX CONTACT MOBILE --- */
+          /* Réduit le padding et la police sur mobile pour éviter que l'email dépasse */
+          .contact-item {
+              padding: 12px 15px !important;
+              font-size: 0.95rem !important;
+          }
+      }
+
+      @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
 
       /* --- LAYOUT GENERAL --- */
       section {
@@ -207,7 +272,7 @@
       .timeline-title { font-size: 1.2rem; font-weight: 600; color: #fff; }
       .timeline-place { color: var(--secondary-color); font-size: 0.95rem; margin-bottom: 0.5rem; }
 
-      /* --- CONTACT (MODERNE) --- */
+      /* --- CONTACT --- */
       .contact-list {
           display: flex;
           flex-direction: column;
@@ -229,7 +294,6 @@
           border: 1px solid transparent;
       }
 
-      /* Effet au survol */
       .contact-item:hover {
           background: rgba(255, 255, 255, 0.1);
           border-color: var(--accent-color);
@@ -245,13 +309,14 @@
           text-align: center;
       }
 
+      /* FIX POUR L'EMAIL COUPÉ */
+      .contact-item span {
+          word-break: break-all; /* Force le texte à aller à la ligne s'il est trop long */
+      }
+
       /* --- FOOTER --- */
       footer { padding: 50px 20px; text-align: center; opacity: 0.6; font-size: 0.9rem; }
 
-      @media (max-width: 768px) {
-          .hero h1 { font-size: 2.5rem; }
-          .nav-links { display: none; }
-      }
   </style>
 </head>
 <body>
@@ -264,7 +329,12 @@
 
 <nav>
   <div class="nav-logo">NB.</div>
-  <div class="nav-links">
+
+  <div class="menu-toggle" id="mobile-menu">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <div class="nav-links" id="nav-links">
     <a href="#home">Accueil</a>
     <a href="#projects">Projets</a>
     <a href="#skills">Compétences</a>
@@ -446,9 +516,37 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({
-    duration: 800, // Durée de l'animation en ms
-    once: true,    // L'animation ne se joue qu'une fois
-    offset: 100    // Déclenchement un peu avant que l'élément soit visible
+    duration: 800,
+    once: true,
+    offset: 100
+  });
+
+  // --- SCRIPT POUR LE MENU MOBILE ---
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+
+    // Change l'icône de burger à croix
+    const icon = menuToggle.querySelector('i');
+    if (navLinks.classList.contains('active')) {
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
+    } else {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+
+  // Ferme le menu quand on clique sur un lien
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      const icon = menuToggle.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
   });
 </script>
 </body>
