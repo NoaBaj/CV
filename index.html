@@ -63,7 +63,7 @@
           50% { transform: translate(30px, -30px); }
       }
 
-      /* --- NAVIGATION --- */
+      /* --- NAVIGATION (MODIFIÉE POUR CENTRER) --- */
       nav {
           position: fixed;
           top: 20px;
@@ -77,36 +77,31 @@
           border: var(--glass-border);
           border-radius: 50px;
           padding: 0.8rem 2rem;
+
+          /* CENTRAGE DES ÉLÉMENTS */
           display: flex;
-          justify-content: space-between;
+          justify-content: center; /* Centre tout le contenu */
           align-items: center;
+          gap: 3rem; /* Espace entre le Logo et les Liens */
+
           z-index: 100;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
       }
 
-      /* Modification pour le Logo Image */
-      .nav-logo {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-weight: 700;
-          font-size: 1.2rem;
-          color: var(--accent-color);
-          text-decoration: none;
-      }
+      .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); }
 
-      .nav-logo img {
-          height: 40px; /* Taille du logo */
-          width: auto;
-          border-radius: 5px; /* Arrondi léger */
+      /* Gestion des liens pour qu'ils soient bien alignés */
+      .nav-links {
+          display: flex;
+          gap: 1.5rem; /* Espace entre chaque lien */
       }
 
       .nav-links a {
           color: #fff;
           text-decoration: none;
-          margin-left: 1.5rem;
           font-size: 0.9rem;
           transition: color 0.3s;
+          /* margin-left supprimé pour un centrage parfait via flex gap */
       }
       .nav-links a:hover { color: var(--accent-color); }
 
@@ -212,7 +207,7 @@
       .timeline-title { font-size: 1.2rem; font-weight: 600; color: #fff; }
       .timeline-place { color: var(--secondary-color); font-size: 0.95rem; margin-bottom: 0.5rem; }
 
-      /* --- NOUVEAU STYLE CONTACT --- */
+      /* --- CONTACT (MODERNE) --- */
       .contact-list {
           display: flex;
           flex-direction: column;
@@ -268,10 +263,7 @@
 </div>
 
 <nav>
-  <div class="nav-logo">
-    <img src="logo.png" alt="Logo Portfolio">
-  </div>
-
+  <div class="nav-logo">NB.</div>
   <div class="nav-links">
     <a href="#home">Accueil</a>
     <a href="#projects">Projets</a>
@@ -441,7 +433,9 @@
 
     </div>
 
-
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7;">
+      <p><i class="fas fa-car" style="margin-right: 8px;"></i> Permis B (en cours)</p>
+    </div>
   </div>
 </section>
 
