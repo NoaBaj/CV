@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Noa Bajomée</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="public/logoNB.png" />
+  <link rel="icon" type="image/png" href="public/Gemini_Generated_Image_ubj3vhubj3vhubj3 (1).png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
@@ -83,7 +84,22 @@
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
       }
 
-      .nav-logo { font-weight: 700; font-size: 1.2rem; color: var(--accent-color); }
+      /* Modification pour le Logo Image */
+      .nav-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: var(--accent-color);
+          text-decoration: none;
+      }
+
+      .nav-logo img {
+          height: 40px; /* Taille du logo */
+          width: auto;
+          border-radius: 5px; /* Arrondi léger */
+      }
 
       .nav-links a {
           color: #fff;
@@ -196,11 +212,42 @@
       .timeline-title { font-size: 1.2rem; font-weight: 600; color: #fff; }
       .timeline-place { color: var(--secondary-color); font-size: 0.95rem; margin-bottom: 0.5rem; }
 
-      /* --- CONTACT --- */
-      .contact-item { display: flex; align-items: center; gap: 15px; font-size: 1.1rem; margin-bottom: 15px; }
+      /* --- NOUVEAU STYLE CONTACT --- */
+      .contact-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+          width: 100%;
+          margin-bottom: 2rem;
+      }
+
+      .contact-item {
+          display: flex;
+          align-items: center;
+          padding: 15px 25px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 15px;
+          text-decoration: none;
+          color: #fff;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+          border: 1px solid transparent;
+      }
+
+      /* Effet au survol */
+      .contact-item:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: var(--accent-color);
+          transform: translateX(10px);
+          box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+      }
+
       .contact-icon {
-          width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%;
-          display: flex; align-items: center; justify-content: center; color: var(--accent-color);
+          font-size: 1.6rem;
+          color: var(--accent-color);
+          margin-right: 20px;
+          min-width: 30px;
+          text-align: center;
       }
 
       /* --- FOOTER --- */
@@ -221,7 +268,10 @@
 </div>
 
 <nav>
-  <div class="nav-logo">NB.</div>
+  <div class="nav-logo">
+    <img src="logo.png" alt="Logo Portfolio">
+  </div>
+
   <div class="nav-links">
     <a href="#home">Accueil</a>
     <a href="#projects">Projets</a>
@@ -258,7 +308,6 @@
     <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
       <div style="display:flex; justify-content:space-between; align-items:start;">
         <h3 style="color: var(--accent-color);">Jeu de Récolte</h3>
-        </a>
       </div>
       <p style="margin: 15px 0; opacity: 0.9; line-height: 1.6;">
         Interface de jeu et IA autonome optimisant ses trajets pour la récolte de ressources.
@@ -287,7 +336,7 @@
 
     <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
       <div style="display:flex; justify-content:space-between; align-items:start;">
-        <h3 style="color: #ec4899;"><Sta>Statistique Handball</Sta></h3>
+        <h3 style="color: #ec4899;">Statistique Handball</h3>
         <a href="https://github.com/Curiosow/SAE-5.A.1" target="_blank" title="Voir le code">
           <i class="fab fa-github" style="font-size: 1.5rem; color: #fff;"></i>
         </a>
@@ -370,27 +419,29 @@
 </section>
 
 <section id="contact" style="min-height: auto; padding-bottom: 50px;">
-  <div class="glass-card" style="text-align: center; max-width: 600px;" data-aos="zoom-in-up">
+  <div class="glass-card" style="width: 100%; max-width: 600px;" data-aos="zoom-in-up">
     <h2 style="font-size: 2rem; margin-bottom: 2rem;">Restons en contact</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-      <div class="contact-item">
-        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+    <div class="contact-list">
+
+      <a href="tel:+33632930567" class="contact-item">
+        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
         <span>+33 6 32 93 05 67</span>
-      </div>
-      <div class="contact-item">
+      </a>
+
+      <a href="mailto:bajomeenoa59@gmail.com" class="contact-item">
         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-        <a href="mailto:bajomeenoa59@gmail.com" style="color: #fff; text-decoration: none; transition: 0.3s;">bajomeenoa59@gmail.com</a>
-      </div>
+        <span>bajomeenoa59@gmail.com</span>
+      </a>
+
       <div class="contact-item">
         <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
         <span>45 rue Léon Bathiat, 59600 Maubeuge</span>
       </div>
+
     </div>
 
-    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-      <p>Permis B (en cours)</p>
-    </div>
+
   </div>
 </section>
 
